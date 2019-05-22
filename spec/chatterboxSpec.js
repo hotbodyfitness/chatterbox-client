@@ -1,5 +1,5 @@
 describe('chatterbox', function() {
-
+console.log('yes');
   describe('ajax behavior', function() {
     var ajaxSpy;
 
