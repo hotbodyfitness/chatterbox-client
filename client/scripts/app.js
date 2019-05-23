@@ -18,7 +18,7 @@ var App = {
   },
 
   send: function(callback = ()=>{}) {
-    Parse.create((data) => {
+    Parse.create(Messages.text, (data) => {
       // examine the response from the server request:
       // console.log('WE SENT DATA!', data);
       callback();
