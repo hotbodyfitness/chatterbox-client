@@ -1,5 +1,5 @@
 var Messages = {
-  username: 'alfred',
-  text: 'bark',
-  roomname: 'doghouse'
+  username: App.username,
+  text: $('#message').val()
+  // roomname: 'doghouse'
 };

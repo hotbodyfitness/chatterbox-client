@@ -1,12 +1,26 @@
 var MessagesView = {
 
-  $chats: $('#chats'),
+  $chats: $('#chats'), // empty div
 
-  initialize: function() {
-    MessageView.render();
+  initialize: function () {
+    MessagesView.render();
   },
 
-  render: function() {
-  }
+  render: function () {
+    var messageArray = [];
 
+    App.fetch(function (data) {
+      // var username = '';
+      messageArray = data.slice();
+      // console.log((messageArray[0].username));
+      for (let x = 0; x < messageArray.length; x++) {
+        if (messageArray[x].hasOwnProperty('username')) {
+          $('#chats').prepend(MessageView.render(messageArray[x]));
+
+        }
+      }
+    });
+
+  },
+  // .html(MessagesView.format)
 };
