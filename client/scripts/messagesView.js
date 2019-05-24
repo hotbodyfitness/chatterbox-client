@@ -15,12 +15,21 @@ var MessagesView = {
       // console.log((messageArray[0].username));
       for (let x = 0; x < messageArray.length; x++) {
         if (messageArray[x].hasOwnProperty('username')) {
-          $('#chats').prepend(MessageView.render(messageArray[x]));
+          $('#chats').append(MessageView.render(messageArray[x]));
 
         }
       }
     });
 
   },
+
+  renderMessage: function(input) {
+    if (input) {
+      $('#chats').prepend(MessageView.renderTest(input));
+    } else {
+    Messages.text = $('#message').val();
+    $('#chats').prepend(MessageView.render(Messages));
+    }
+  }
   // .html(MessagesView.format)
 };
