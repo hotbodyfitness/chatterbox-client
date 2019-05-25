@@ -25,7 +25,7 @@ var App = {
   fetch: function (callback = () => { }) {
     Parse.readAll((data) => {
       // examine the response from the server request:
-      // console.log('WE GOT DATA!', data.results);
+      console.log('WE GOT DATA!', data.results);
       callback(data.results);
     });
   },

@@ -29,11 +29,12 @@ var MessagesView = {
     });
   },
 
-  renderMessage: function(input) {
+  renderMessage: function (input) {
     if (input) {
       $('#chats').prepend(MessageView.renderTest(input));
     } else {
       Messages.text = $('#message').val();
+<<<<<<< HEAD
       Messages.roomname = $('#rooms select').val();
       if (Messages.username.includes('<') || Messages.username.includes('%')) {
         Messages.username = 'Anonymous';
@@ -41,6 +42,9 @@ var MessagesView = {
       if(!Messages.text.includes('<') && !Messages.username.includes('>')) {
         $('#chats').children().prepend(MessageView.render(Messages));
       }
+=======
+      $('#chats').prepend(MessageView.render(Messages));
+>>>>>>> b15189664dbe99fa995b91eeb363469d2551b495
     }
     document.getElementById('message').value = '';
   }
