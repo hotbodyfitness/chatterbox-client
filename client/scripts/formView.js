@@ -2,43 +2,38 @@ var FormView = {
 
   $form: $('form'),
 
-  initialize: function() {
+  initialize: function () {
     FormView.$form.on('submit', FormView.handleSubmit);
     $('#rooms button').click(FormView.handleRoom);
-    // when username is clicked,some sort of function is invoked
-    // $('#user').click(FormView.handleFriends);
   },
 
-  handleSubmit: function(event) {
+  handleSubmit: function (event) {
     // Stop the browser from submitting the form
     event.preventDefault();
     MessagesView.renderMessage();
     App.send();
-    // console.log('click!');
+    FormView.highlight();
   },
 
-  handleRoom: function() {
+  handleRoom: function () {
     RoomsView.renderRoom();
   },
 
-  handleFriends: function() {
-    // console.log('Friend was handled');
-    // var text;
-    // document.addEventListener('click', function (event) {
-    //   text = event.target.innerText;
-    // });
-    // var test = document.getElementById('user').innerText;
-    // console.log(text);
-    var clickedUser = $('.user').click(function (event) {
-      console.log($(event).val().prop('id'));
-      // var test = $(event.target).children();
-
+  handleFriends: function () {
+    $('.user').on('click', function (event) {
+      Friends.username.push(event.target.innerHTML.slice(0, -1));
     });
-    Friends.username.push(clickedUser);
-    console.log(Friends.username);
+    FormView.highlight();
+
   },
 
-  setStatus: function(active) {
+  highlight: function () {
+    for (let y = 0; y < Friends.username.length; y++) {
+      $(`.${Friends.username[y]}`).css("background", "#FFFF00");
+    }
+  },
+
+  setStatus: function (active) {
     var status = active ? 'true' : null;
     FormView.$form.find('input[type=submit]').attr('disabled', status);
   }
