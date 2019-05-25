@@ -4,6 +4,7 @@ var FormView = {
 
   initialize: function() {
     FormView.$form.on('submit', FormView.handleSubmit);
+    $('#rooms button').click(FormView.handleRoom);
   },
 
   handleSubmit: function(event) {
@@ -12,6 +13,10 @@ var FormView = {
     MessagesView.renderMessage();
     App.send();
     // console.log('click!');
+  },
+
+  handleRoom: function() {
+    RoomsView.renderRoom();
   },
 
   setStatus: function(active) {

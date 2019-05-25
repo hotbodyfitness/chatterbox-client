@@ -15,8 +15,9 @@ var MessagesView = {
       // console.log((messageArray[0].username));
       for (let x = 0; x < messageArray.length; x++) {
         if (messageArray[x].hasOwnProperty('username')) {
-          $('#chats').append(MessageView.render(messageArray[x]));
-
+          if (!messageArray[x].username.includes('<') && !messageArray[x].text.includes('<') && !messageArray[x].username.includes('%')) {
+            $('#chats').append(MessageView.render(messageArray[x]));
+          }
         }
       }
     });
