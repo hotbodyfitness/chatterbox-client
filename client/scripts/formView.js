@@ -9,8 +9,9 @@ var FormView = {
   handleSubmit: function(event) {
     // Stop the browser from submitting the form
     event.preventDefault();
+    MessagesView.renderMessage();
     App.send();
-    console.log('click!');
+    // console.log('click!');
   },
 
   setStatus: function(active) {

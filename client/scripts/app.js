@@ -4,7 +4,7 @@ var App = {
 
   username: 'anonymous',
 
-  initialize: function() {
+  initialize: function () {
     App.username = window.location.search.substr(10);
 
     FormView.initialize();
@@ -17,15 +17,12 @@ var App = {
 
   },
 
-  send: function(callback = ()=>{}) {
-    Parse.create(Messages.text, (data) => {
-      // examine the response from the server request:
-      // console.log('WE SENT DATA!', data);
-      callback();
-    });
+  send: function (callback = () => { }) {
+    Parse.create(Messages);
+    // examine the response from the server request:
   },
 
-  fetch: function(callback = ()=>{}) {
+  fetch: function (callback = () => { }) {
     Parse.readAll((data) => {
       // examine the response from the server request:
       console.log('WE GOT DATA!', data.results);
@@ -33,12 +30,12 @@ var App = {
     });
   },
 
-  startSpinner: function() {
+  startSpinner: function () {
     App.$spinner.show();
     FormView.setStatus(true);
   },
 
-  stopSpinner: function() {
+  stopSpinner: function () {
     App.$spinner.fadeOut('fast');
     FormView.setStatus(false);
   }
