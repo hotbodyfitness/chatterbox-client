@@ -1,27 +1,32 @@
 var MessagesView = {
 
-  $chats: $('#chats'), // empty div
+  $chats: $('#chats'),
 
   initialize: function () {
     MessagesView.render();
+    $('#rooms select').change(function() {
+      $('#chats').children().html('<p></p>');
+      MessagesView.render();
+    });
   },
 
   render: function () {
     var messageArray = [];
-
+    var value = '';
     App.fetch(function (data) {
-      // var username = '';
       messageArray = data.slice();
-      // console.log((messageArray[0].username));
+      value = $('#rooms select').val();
       for (let x = 0; x < messageArray.length; x++) {
         if (messageArray[x].hasOwnProperty('username')) {
           if (!messageArray[x].username.includes('<') && !messageArray[x].text.includes('<') && !messageArray[x].username.includes('%')) {
-            $('#chats').append(MessageView.render(messageArray[x]));
+            // $('#chats').append(MessageView.render(messageArray[x]));
+            if (messageArray[x].roomname === value) {
+              $('#chats').children().append(MessageView.render(messageArray[x]));
+            }
           }
         }
       }
     });
-
   },
 
   renderMessage: function(input) {
@@ -29,13 +34,14 @@ var MessagesView = {
       $('#chats').prepend(MessageView.renderTest(input));
     } else {
       Messages.text = $('#message').val();
+      Messages.roomname = $('#rooms select').val();
       if (Messages.username.includes('<') || Messages.username.includes('%')) {
         Messages.username = 'Anonymous';
       }
       if(!Messages.text.includes('<') && !Messages.username.includes('>')) {
-        $('#chats').prepend(MessageView.render(Messages));
+        $('#chats').children().prepend(MessageView.render(Messages));
       }
     }
+    document.getElementById('message').value = '';
   }
-  // .html(MessagesView.format)
 };

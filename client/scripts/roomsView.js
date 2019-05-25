@@ -26,6 +26,9 @@ var RoomsView = {
   renderRoom: function () {
     var newRoom = $('#rooms input').val();
     $('#rooms select').prepend(`<option id="${newRoom}">${newRoom}</option>`);
+    $('#rooms input').val('');
+    $('#rooms select').val(`${newRoom}`);
+    $('#chats').children().html('<p></p>');
   }
 
 };
