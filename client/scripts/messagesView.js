@@ -23,12 +23,12 @@ var MessagesView = {
 
   },
 
-  renderMessage: function(input) {
+  renderMessage: function (input) {
     if (input) {
       $('#chats').prepend(MessageView.renderTest(input));
     } else {
-    Messages.text = $('#message').val();
-    $('#chats').prepend(MessageView.render(Messages));
+      Messages.text = $('#message').val();
+      $('#chats').prepend(MessageView.render(Messages));
     }
   }
   // .html(MessagesView.format)

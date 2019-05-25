@@ -10,7 +10,7 @@ var MessageView = {
   <br>
     `),
 
-    renderTest: _.template(`
+  renderTest: _.template(`
     <div class="username" style="background:#DBDBDB;padding:10px">
       <b><%= username %>:</b>
         <div class="text">
